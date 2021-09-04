@@ -1,10 +1,14 @@
-const textarea = document.querySelector("#text");
+const textArea = document.querySelector("#text");
 document.querySelector("#play").addEventListener("click", () => {
-  const audio = new SpeechSynthesisUtterance(textarea.value);
-  audio.rate = 0.87;
-  textarea.disabled = true;
-  audio.addEventListener("end", () => {
-    textarea.disabled = false;
-  });
-  speechSynthesis.speak(audio);
+  if (textArea.value !== "") {
+    textArea.disabled = true;
+    const audio = new SpeechSynthesisUtterance(textArea.value);
+    audio.rate = 0.8;
+    audio.addEventListener("end", () => {
+      textArea.disabled = false;
+    });
+    speechSynthesis.speak(audio);
+  } else {
+    alert("Please enter text for dictation");
+  }
 });
